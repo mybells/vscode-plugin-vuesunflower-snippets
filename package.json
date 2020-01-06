@@ -1,0 +1,34 @@
+{
+  "name": "vscode-plugin-vuesunflower-snippets",
+  "displayName": "Vuesunflower Snippets",
+  "description": "Vuesunflower的语法自动完成vscode插件",
+  "keywords": [
+    "vue-sunflower",
+    "snippets"
+  ],
+  "icon": "images/icon.png",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.41.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "",
+        "path": "./snippets/snippets.json"
+      }
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/mybells/vscode-plugin-vuesunflower-snippets/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mybells/vscode-plugin-vuesunflower-snippets"
+  },
+  "homepage": "https://github.com/mybells/vscode-plugin-vuesunflower-snippets/blob/master/README.md"
+}
