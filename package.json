@@ -1,7 +1,7 @@
 {
   "name": "vscode-plugin-vuesunflower-snippets",
   "displayName": "Vuesunflower Snippets",
-  "description": "Vuesunflower的语法自动完成vscode插件",
+  "description": "Vuesunflower的语法代码片段vscode插件",
   "keywords": [
     "vue-sunflower",
     "snippets"
@@ -15,10 +15,30 @@
     "Other",
     "Snippets"
   ],
+  "galleryBanner": {
+    "color": "#FAE301",
+    "theme": "dark"
+  },
+  "main": "./out/extension",
+  "activationEvents": [
+    "onLanguage:vuejs"
+  ],
   "contributes": {
     "snippets": [
       {
-        "language": "",
+        "language": "javascript",
+        "path": "./snippets/snippets.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/snippets.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/snippets.json"
+      },
+      {
+        "language": "vue-html",
         "path": "./snippets/snippets.json"
       }
     ]

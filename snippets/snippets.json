@@ -1,1 +1,150 @@
-{}
+{
+  "Basic: Layout s-row": {
+    "prefix": "srow",
+    "body": ["<s-row>", "\t<s-col :span=\"${1:12}\">${3}</s-col>", "\t<s-col :span=\"${2:12}\">${4}</s-col>", "</s-row>", "${5}"],
+    "description": "vue-sunflower <s-row> with <s-col>"
+  },
+  "Basic: Layout s-col": {
+    "prefix": "scol",
+    "body": ["<s-col :span=\"${1}\">${2}</s-col>", "${3}"],
+    "description": "vue-sunflower <s-col>"
+  },
+  "Basic: Layout s-grid": {
+    "prefix": "sgrid",
+    "body": [
+      "<s-grid direction=\"${1|row,column|}\">",
+      "\t<s-grid-item :flex=\"${2:12}\">${4}</s-grid-item>",
+      "\t<s-grid-item :flex=\"${3:12}\">${5}</s-grid-item>",
+      "</s-grid>",
+      "${6}"
+    ],
+    "description": "vue-sunflower <s-grid>"
+  },
+  "Basic: Icon": {
+    "prefix": "sicon",
+    "body": ["<i class=\"iconfont icon-${1}\"></i>", "${2}"],
+    "description": "vue-sunflower icon"
+  },
+  "Basic: Button": {
+    "prefix": "sbutton",
+    "body": ["<s-button type=\"${1|default,cancel|}\" @click=\"$2\"></s-button>", "${3}"],
+    "description": "vue-sunflower <s-button>"
+  },
+  "Form: Input": {
+    "prefix": "sinput",
+    "body": ["<s-input v-model=\"$1\" placeholder=\"$2\"></s-input>", "${3}"],
+    "description": "vue-sunflower <s-input>"
+  },
+  "Form: Textarea": {
+    "prefix": "stextarea",
+    "body": ["<s-input type=\"textarea\" :rows=\"${1:2}\" v-model=\"$2\" placeholder=\"$3\"></s-input>", "${4}"],
+    "description": "vue-sunflower <s-input type=\"textarea\">"
+  },
+  "Form: InputNumber": {
+    "prefix": "sinputnumber",
+    "body": ["<s-input-number v-model=\"$1\" :min=\"${2:1}\" :max=\"${3:10}\"></s-input-number>", "${4}"],
+    "description": "vue-sunflower <s-input-number>"
+  },
+  "Form: Radio": {
+    "prefix": "sradio",
+    "body": ["<s-radio v-model=\"${1}\" label=\"${2}\">$3</s-radio>", "${4}"],
+    "description": "vue-sunflower <s-radio>"
+  },
+
+  "Form: Radio Group": {
+    "prefix": "sradiogroup",
+    "body": [
+      "<s-radio-group v-model=\"$1\">",
+      "\t<s-radio v-for=\"${2:item} in ${3:items}\" :key=\"${2:item}.${4:key}\" :label=\"${2:item}.${5:label}\">",
+      "\t\t{{${2:item}.${6:title}}}",
+      "\t</s-radio>",
+      "</s-radio-group>",
+      "${7}"
+    ],
+    "description": "vue-sunflower <s-radio-group> with <s-radio>"
+  },
+
+  "Form: Checkbox": {
+    "prefix": "scheckbox",
+    "body": ["<s-checkbox v-model=\"${1}\" label=\"${2}\">$3</s-checkbox>", "${4}"],
+    "description": "vue-sunflower <s-checkbox>"
+  },
+
+  "Form: Checkbox Group": {
+    "prefix": "scheckboxgroup",
+    "body": [
+      "<s-checkbox-group v-model=\"$1\">",
+      "\t<s-checkbox v-for=\"${2:item} in ${3:items}\" :key=\"${2:item}.${4:key}\" :label=\"${2:item}.${5:label}\"></s-checkbox>",
+      "</s-checkbox-group>",
+      "${6}"
+    ],
+    "description": "vue-sunflower <s-checkbox-group> with <s-checkbox>"
+  },
+  "Form: Switch": {
+    "prefix": "sswitch",
+    "body": ["<s-switch v-model=\"$1\" active-value=\"$2\" inactive-value=\"$3\"></s-switch>", "${4}"],
+    "description": "vue-sunflower <s-switch>"
+  },
+  "Form: TimePicker": {
+    "prefix": "stimepicker",
+    "body": ["<s-time-picker v-model=\"$1\" placeholder=\"${2:任意时间点}\"></s-time-picker>", "${3}"],
+    "description": "vue-sunflower <s-time-picker>"
+  },
+
+  "Form: TimeSelector": {
+    "prefix": "stimeselector",
+    "body": ["<s-time-select v-model=\"$1\" :picker-options=\"$2\" placeholder=\"${3:选择时间}\"></s-time-select>", "${4}"],
+    "description": "vue-sunflower <s-time-select>"
+  },
+
+  "Form: DatePicker": {
+    "prefix": "sdatepicker",
+    "body": [
+      "<s-date-picker v-model=\"$1\" type=\"${2|date,year,month,week,datetime,datetimerange,daterange|}\" placeholder=\"${3:选择日期时间}\"></s-date-picker>",
+      "${3}"
+    ],
+    "description": "vue-sunflower <el-date-picker>"
+  },
+  "Form: Slider": {
+    "prefix": "sslider",
+    "body": ["<s-slider v-model=\"$1\" :min=\"${2|0}\" :max=\"${3|100}\"></s-slider>", "${4}"],
+    "description": "vue-sunflower <s-slider>"
+  },
+  "Form: Form": {
+    "prefix": "sform",
+    "body": [
+      "<s-form :model=\"${1:form}\" :rules=\"${2:rules}\" ref=\"${1:form}\" label-width=\"80px\">",
+      "\t<s-form-item label=\"$3\" prop=\"$4\">",
+      "\t\t<s-input v-model=\"${1:form}.${4}\"></s-input>",
+      "\t</s-form-item>",
+      "</s-form>",
+      "${5}"
+    ],
+    "description": "vue-sunflower <s-form>"
+  },
+
+  "Form: Form Item": {
+    "prefix": "sformitem",
+    "body": ["<s-form-item label=\"$1\" prop=\"$2\">", "\t$3", "</s-form-item>", "${4}"],
+    "description": "vue-sunflower <s-form-item>"
+  },
+  "Form: Upload": {
+    "prefix": "supload",
+    "body": [
+      "<s-upload",
+      "\taction=\"$1\"",
+      "\tmultiple",
+      "\t:on-remove=\"$2\"",
+      "\t:limit=\"$3\"",
+      "\t:on-success=\"$4\"",
+      "\t:on-exceed=\"$5\"",
+      "\t:file-list=\"$6\">",
+      "\t<s-button icon=\"export\">${7:上传}</s-button>",
+      "\t<div slot=\"tip\" class=\"s-upload__tip\">最多只能上传3个文件</div>",
+      "\t<s-button style=\"margin-left: 10px;\" icon=\"export\" @click=\"$8\">${9:上传到服务器}</s-button>",
+      "</s-upload>",
+      "${10}"
+    ],
+    "description": "vue-sunflower <s-upload>"
+  }
+}
