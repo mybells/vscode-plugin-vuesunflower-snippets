@@ -2,11 +2,12 @@
   "name": "vscode-plugin-vuesunflower-snippets",
   "displayName": "Vuesunflower Snippets",
   "description": "Vuesunflower的语法代码片段vscode插件",
+  "publisher": "mybells",
   "keywords": [
     "vue-sunflower",
     "snippets"
   ],
-  "icon": "images/icon.png",
+  "icon": "images/logo.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.41.0"
