@@ -16,10 +16,6 @@
     "Other",
     "Snippets"
   ],
-  "galleryBanner": {
-    "color": "#FAE301",
-    "theme": "dark"
-  },
   "main": "./out/extension",
   "activationEvents": [
     "onLanguage:vuejs"
