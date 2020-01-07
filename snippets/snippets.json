@@ -87,7 +87,7 @@
   },
   "Form: TimePicker": {
     "prefix": "stimepicker",
-    "body": ["<s-time-picker v-model=\"$1\" placeholder=\"${2:任意时间点}\"></s-time-picker>", "${3}"],
+    "body": ["<s-time-picker v-model=\"$1\" placeholder=\"${2:选择时间}\"></s-time-picker>", "${3}"],
     "description": "vue-sunflower <s-time-picker>"
   },
 
@@ -101,9 +101,9 @@
     "prefix": "sdatepicker",
     "body": [
       "<s-date-picker v-model=\"$1\" type=\"${2|date,year,month,week,datetime,datetimerange,daterange|}\" placeholder=\"${3:选择日期时间}\"></s-date-picker>",
-      "${3}"
+      "${4}"
     ],
-    "description": "vue-sunflower <el-date-picker>"
+    "description": "vue-sunflower <s-date-picker>"
   },
   "Form: Slider": {
     "prefix": "sslider",
@@ -140,11 +140,505 @@
       "\t:on-exceed=\"$5\"",
       "\t:file-list=\"$6\">",
       "\t<s-button icon=\"export\">${7:上传}</s-button>",
-      "\t<div slot=\"tip\" class=\"s-upload__tip\">最多只能上传3个文件</div>",
-      "\t<s-button style=\"margin-left: 10px;\" icon=\"export\" @click=\"$8\">${9:上传到服务器}</s-button>",
+      "\t<div slot=\"tip\" class=\"s-upload__tip\">${8:最多只能上传3个文件}</div>",
       "</s-upload>",
-      "${10}"
+      "${9}"
     ],
     "description": "vue-sunflower <s-upload>"
+  },
+  "Layout: Alert": {
+    "prefix": "salert",
+    "body": ["<s-alert :title=\"$1\" type=\"${2|info,success,warning,error|}\" show-icon></s-alert>", "${3}"],
+    "description": "vue-sunflower <s-alert>"
+  },
+  "Layout: NavMenu Menu": {
+    "prefix": "smenu",
+    "body": [
+      "<s-menu mode=\"${1|vertical,horizontal|}\" :active-name=\"$2\" @on-select=\"$3\">",
+      "\t<el-menu-item :name=\"${4:item}\" v-for=\"(${4:item}, ${5:index}) in ${6:items}\">",
+      "\t\t{{${4:item}}}",
+      "\t</el-menu-item>",
+      "</s-menu>",
+      "${7}"
+    ],
+    "description": "vue-sunflower <s-menu> with <s-menu-item>"
+  },
+
+  "Layout: NavMenu subMenu": {
+    "prefix": "ssubmenu",
+    "body": [
+      "<s-submenu :name=\"$1\">",
+      "\t<template slot=\"title\">$2</template>",
+      "\t<s-menu-item :name=\"${4:item}\" v-for=\"(${3:item}, ${4:index}) in ${5:items}\"",
+      "\t\t{{${3:item}}}",
+      "\t</s-menu-item>",
+      "</s-submenu>",
+      "${6}"
+    ],
+    "description": "vue-sunflower <s-submenu> with <s-menu-item>"
+  },
+
+  "Layout: NavMenu Menu Item": {
+    "prefix": "smenuitem",
+    "body": ["<s-menu-item :name=\"$1\">$2</s-menu-item>", "${3}"],
+    "description": "vue-sunflower <s-menu-item>"
+  },
+  "Layout: Tag": {
+    "prefix": "stag",
+    "body": ["<s-tag type=\"${1|primary,gray,success,warning,danger|}\" closable>$2</s-tag>", "${3}"],
+    "description": "vue-sunflower <s-tag>"
+  },
+  "Layout: Breadcrumb": {
+    "prefix": "sbreadcrumb",
+    "body": [
+      "<s-breadcrumb separator=\"${1:/}\">",
+      "\t<s-breadcrumb-item :to=\"{ path: '$2'}\">$3</s-breadcrumb-item>",
+      "\t<s-breadcrumb-item :to=\"{ path: '$4'}\">$5</s-breadcrumb-item>",
+      "</s-breadcrumb>",
+      "${6}"
+    ],
+    "description": "vue-sunflower <s-breadcrumb>"
+  },
+  "Layout: Breadcrumb Item": {
+    "prefix": "sbreadcrumbitem",
+    "body": ["<s-breadcrumb-item :to=\"{ path: '$1', name: '$2' }\">$3</s-breadcrumb-item>", "${4}"],
+    "description": "vue-sunflower <s-breadcrumb-item>"
+  },
+  "Layout: Card": {
+    "prefix": "scard",
+    "body": [
+      "<s-card :body-style=\"${1:{ padding: '10px' }}\">",
+      "\t<div slot=\"header\">",
+      "\t\t<span>${2:<!-- card title -->}</span>",
+      "\t</div>",
+      "\t${3:<!-- card body -->}",
+      "</s-card>",
+      "${4}"
+    ],
+    "description": "vue-sunflower <s-card>"
+  },
+  "Layout: Card Diy": {
+    "prefix": "scarddiy",
+    "body": [
+      "<s-card-diy title=\"${1}\" :more-click=\"${2}\" :show-more=\"${2:false}\" :show-scrollbar=\"${2:false}\">",
+      "\t<div slot=\"header\">",
+      "\t\t<span>${2:<!-- card title -->}</span>",
+      "\t</div>",
+      "\t${3:<!-- card body -->}",
+      "</s-card-diy>",
+      "${4}"
+    ],
+    "description": "vue-sunflower <s-card-diy>"
+  },
+  "Layout: Loading": {
+    "prefix": "sloading",
+    "body": ["v-loading=\"${1:loading}\"", "element-loading-text=\"${1:拼命加载中}\"", "${4}"],
+    "description": "vue-sunflower loading"
+  },
+
+  "Layout: Collapse": {
+    "prefix": "scollapse",
+    "body": [
+      "<s-collapse v-model=\"${1:activeNames}\" :accordion=\"${2:false}\" @change=\"$3\">",
+      "\t<s-collapse-item v-for=\"${4:item} in ${5:items}\"",
+      "\t\t:title=\"${4:item}.${7:title}\"",
+      "\t\t:name=\"${4:item}.${6:uuid}\">",
+      "\t\t${8:<!-- content -->}",
+      "\t</s-collapse-item>",
+      "</s-collapse>",
+      "${9}"
+    ],
+    "description": "vue-sunflower <s-collapse> with <s-collapse-item>"
+  },
+
+  "Layout: Collapse Item": {
+    "prefix": "scollapseitem",
+    "body": ["<s-collapse-item :title=\"$1\" :name=\"$2\">", "\t${3:<!-- content -->}", "</s-collapse-item>", "${4}"],
+    "description": "vue-sunflower <s-collapse-item>"
+  },
+  "Layout: Rate": {
+    "prefix": "srate",
+    "body": ["<s-rate v-model=\"$1\" text-template=\"$2\"></s-rate>", "${3}"],
+    "description": "vue-sunflower <s-rate>"
+  },
+  "Layout: Progress": {
+    "prefix": "sprogress",
+    "body": [
+      "<s-progress type=\"${1|line,circle|}\" :percentage=\"$2\" :stroke-width=\"$3\" :status=\"${4|warning,error,success,disabled|}\"></s-progress>",
+      "${5}"
+    ],
+    "description": "vue-sunflower <s-progress>"
+  },
+  "Layout: Dropdown": {
+    "prefix": "sdropdown",
+    "body": [
+      "<s-dropdown trigger=\"${1:click}\">",
+      "\t<s-button>",
+      "\t\t${2:下拉菜单}<i class=\"iconfont icon-bottom\"></i>",
+      "\t<s-button>",
+      "\t<s-dropdown-menu slot=\"list\">",
+      "\t\t<s-dropdown-item v-for=\"${3:item} in ${4:items}\">",
+      "\t\t\t{{${3:item}.${5:title}}}",
+      "\t\t</el-dropdown-item>",
+      "\t</s-dropdown-menu>",
+      "</s-dropdown>",
+      "${6}"
+    ],
+    "description": "vue-sunflower <s-dropdown> with <s-dropdown-item>"
+  },
+  "Layout: Dropdown Item": {
+    "prefix": "sdropdownitem",
+    "body": ["<s-dropdown-item>$1</s-dropdown-item>", "${2}"],
+    "description": "vue-sunflower <s-dropdown-item>"
+  },
+  "Layout: Cascade": {
+    "prefix": "scascade",
+    "body": ["<s-cascader :options=\"${1:options}\" v-model=\"${2:selectedOptions}\" @change=\"${3:handleChange}\">", "</s-cascader>", "${4}"],
+    "description": "vue-sunflower <s-cascader>"
+  },
+  "Layout: Select": {
+    "prefix": "sselect",
+    "body": [
+      "<s-select v-model=\"$1\" placeholder=\"${2:请选择}\" filterable multiple clearable>",
+      "\t<s-option v-for=\"${3:item} in ${4:options}\"",
+      "\t\t:key=\"${3:item}.${5:value}\"",
+      "\t\t:label=\"${3:item}.${6:label}\"",
+      "\t\t:value=\"${3:item}.${5:value}\">",
+      "\t</s-option>",
+      "</s-select>",
+      "${7}"
+    ],
+    "description": "vue-sunflower <s-select>"
+  },
+  "Layout: Select Option": {
+    "prefix": "sselectoption",
+    "body": ["<s-option :label=\"$1\" :value=\"$2\"></s-option>", "${3}"],
+    "description": "vue-sunflower <s-option>"
+  },
+  "Layout: Steps": {
+    "prefix": "ssteps",
+    "body": [
+      "<s-steps :current=\"$1\" type=\"${2|default,arrow|}\" finish-status\"${3|process,wait,finish,error|}\">",
+      "\t<s-step v-for=\"${4:item} in ${5:items}\"",
+      "\t\t:key=\"${4:item}.${6:key}\"",
+      "\t\t:title=\"${4:item}.${7:title}\"",
+      "\t\t:content=\"${4:item}.${8:description}\"",
+      "\t\t:icon=\"${4:item}.${9:icon}\">",
+      "\t</s-step>",
+      "</s-steps>",
+      "${10}"
+    ],
+    "description": "vue-sunflower <s-steps> with <s-step>"
+  },
+
+  "Layout: Steps Step": {
+    "prefix": "sstep",
+    "body": ["<s-step :title=\"$1\" :content=\"$2\" :icon=\"$3\"></s-step>", "${4}"],
+    "description": "vue-sunflower <s-step>"
+  },
+  "Layout: Carousel": {
+    "prefix": "scarousel",
+    "body": [
+      "<s-carousel trigger=\"${1:click}\" height=\"${2:300px}\">",
+      "\t<s-carousel-item v-for=\"${3:item} in ${4:items}\" :key=\"${3:item}.${5:key}\">",
+      "\t\t${6:<!-- content -->}",
+      "\t</s-carousel-item>",
+      "</s-carousel>",
+      "${7}"
+    ],
+    "description": "vue-sunflower <s-carousel> with <s-carousel-item>"
+  },
+
+  "Layout: Carousel Item": {
+    "prefix": "scarouselitem",
+    "body": ["<s-carousel-item>", "\t${1:<!-- content -->}", "</s-carousel-item>", "${2}"],
+    "description": "vue-sunflower <s-carousel-item>"
+  },
+  "Layout: Tree": {
+    "prefix": "stree",
+    "body": ["<s-tree :data=\"$1\" :props=\"$2\" :show-checkbox=\"${3:false}\" @node-click=\"$4\"></s-tree>", "${5}"],
+    "description": "vue-sunflower <s-tree>"
+  },
+  "Layout: Tab": {
+    "prefix": "stab",
+    "body": [
+      "<s-tab v-model=\"$1\" type=\"${2|card,border-card|}\">",
+      "\t<s-tab-pane v-for=\"${3:item} in items\" :key=\"${3:item}.${4:key}\" :label = \"${3:item}.${5:label}\" :name=\"${3:item}.${6:id}\">",
+      "\t\t$7",
+      "\t</s-tab-pane>",
+      "</s-tab>",
+      "${8}"
+    ],
+    "description": "vue-sunflower <s-tab> with <s-tab-pane>"
+  },
+
+  "Layout: Tabs tab pane": {
+    "prefix": "stabpane",
+    "body": ["<s-tab-pane :label=\"$1\" :name=\"$2\">", "\t$3", "</s-tab-pane>", "${4}"],
+    "description": "vue-sunflower <s-tab-pane>"
+  },
+  "Layout: Transfer": {
+    "prefix": "stransfer",
+    "body": ["<s-transfer v-model=\"$1\" :data=\"$2\" :props=\"$2\" filterable></s-transfer>", "${3}"],
+    "description": "vue-sunflower <s-transfer>"
+  },
+
+  "Notice: Badge": {
+    "prefix": "sbadge",
+    "body": ["<s-badge :value=\"$1\">", "\t$2", "</s-badge>", "${3}"],
+    "description": "vue-sunflower <s-badge>"
+  },
+  "Notice: Dialog": {
+    "prefix": "sdialog",
+    "body": [
+      "<s-dialog title=\"$1\" width=\"${2:700px}\" :before-close=\"$3\">",
+      "\t$4",
+      "\t<template slot=\"footer\" class=\"dialog-footer\">",
+      "\t\t<s-button type=\"primary\" @click=\"$5\">确 定</s-button>",
+      "\t\t<s-button type=\"cancel\" @click=\"$6\">取 消</s-button>",
+      "\t</template>",
+      "</s-dialog>",
+      "${7}"
+    ],
+    "description": "vue-sunflower <s-dialog>"
+  },
+  "Notice: Message": {
+    "prefix": "s$message",
+    "body": ["this.\\$message({", "\tmessage: '$1',", "\ttype: '${2|info,success,warning,error|}',", "});", "${4}"],
+    "description": "vue-sunflower $message"
+  },
+  "Notice: Messagebox": {
+    "prefix": "s$msgbox",
+    "body": [
+      "this.\\$msgbox({",
+      "\ttitle: '$1',",
+      "\tmessage: '${2}',",
+      "\tshowCancelButton: true,",
+      "\tconfirmButtonText: '${3:确定}',",
+      "\tcancelButtonText: '${4:取消}',",
+      "\tbeforeClose: (action, instance, done) => {",
+      "\t\t${5}",
+      "\t}).then(action => {",
+      "\t\t${6}",
+      "\t});",
+      "});",
+      "${7}"
+    ],
+    "description": "vue-sunflower $msgbox"
+  },
+  "Notice: Messagebox Alert": {
+    "prefix": "s$alert",
+    "body": [
+      "this.$alert('${1:内容}', '${2:标题}', {",
+      "\tconfirmButtonText: '${3:确定}',",
+      "\tcallback: action => {",
+      "\t\t${4}",
+      "\t}",
+      "});",
+      "${5}"
+    ],
+    "description": "vue-sunflower $alert"
+  },
+
+  "Notice: Messagebox Confirm": {
+    "prefix": "s$confirm",
+    "body": [
+      "this.$confirm('${1:内容}', '${2:提示}', {",
+      "\tconfirmButtonText: '${3:确定}',",
+      "\tcancelButtonText: '${4:取消}',",
+      "\ttype: '${5|info,warning,error,success|}',",
+      "}).then(() => {",
+      "\t$5",
+      "}).catch(() => {",
+      "\t$6",
+      "});",
+      "${7}"
+    ],
+    "description": "vue-sunflower $confirm"
+  },
+
+  "Notice: Messagebox Prompt": {
+    "prefix": "s$prompt",
+    "body": [
+      "this.$prompt('${1:内容}', '${2:标题}', {",
+      "\tconfirmButtonText: '${3:确定}',",
+      "\tcancelButtonText: '${4:取消}',",
+      "\tinputPattern: '${5}',",
+      "\tinputErrorMessage: '${6}',",
+      "}).then(() => {",
+      "\t$7",
+      "}).catch(() => {",
+      "\t$8",
+      "});",
+      "${9}"
+    ],
+    "description": "vue-sunflower $prompt"
+  },
+
+  "Notice: Notification": {
+    "prefix": "s$notify",
+    "body": [
+      "this.$notify({",
+      "\ttitle: '${1}',",
+      "\tmessage: '${2}',",
+      "\ttype: '${3|info,success,warning,error|}',",
+      "\tduration: '${4|4500, 0|}',",
+      "});",
+      "${5}"
+    ],
+    "description": "vue-sunflower $notify"
+  },
+  "Notice: Tooltip": {
+    "prefix": "stooltip",
+    "body": [
+      "<s-tooltip content=\"$1\" placement=\"$2\" effect=\"${3|dark,light|}\">",
+      "\t${4:<!-- content to trigger tooltip here -->}",
+      "</s-tooltip>",
+      "${5}"
+    ],
+    "description": "vue-sunflower <s-tooltip>"
+  },
+  "Notice: Loading": {
+    "prefix": "s$loading",
+    "body": [
+      "let Loading = this.$loading({",
+      "\ttext: '${1}',",
+      "\tcustomClass: '${2:loadingClass}',",
+      "\tfullscreen: ${3:true}",
+      "});",
+      "Loading.close();",
+      "${4}"
+    ],
+    "description": "vue-sunflower $loading"
+  },
+  "Notice: Popover": {
+    "prefix": "spopover",
+    "body": [
+      "<s-popover",
+      "\t:ref=\"${1:popover}\"",
+      "\tplacement=\"${2|top,top-start,top-end,bottom,bottom-start,bottom-end,left,left-start,left-end,right,right-start,right-end|}\"",
+      "\t:title=\"$3\"",
+      "\twidth=\"${4:150px}\"",
+      "\ttrigger=\"${5|click,focus,hover,manual|}\">",
+      "\t$6",
+      "\t${7:<i class=\"iconfont icon-set\" slot=\"reference\"></i>}",
+      "</s-popover>",
+      "${8}"
+    ],
+    "description": "vue-sunflower <s-popover>"
+  },
+  "Table: Table": {
+    "prefix": "stable",
+    "body": [
+      "<s-table :data=\"$1\" style=\"width: 100%;\" max-height=\"${2:500}\">",
+      "\t<s-table-column type=\"selection\" width=\"35\"></s-table-column>",
+      "\t<s-table-column v-for=\"(${3:value}, ${4:key}, ${5:index}) in ${6:list}\" :label=\"${3:value}\" :prop=\"${4:key}\" :key=\"${5:index}\"",
+      "\t\t<template slot-scope=\"scope\">",
+      "\t\t\t<span>{{${6:scope.row[key]}}}</span>",
+      "\t\t</template>",
+      "\t</s-table-column>",
+      "</s-table>",
+      "${7}"
+    ],
+    "description": "vue-sunflower <s-table>"
+  },
+  "Table: TablePage": {
+    "prefix": "stablepage",
+    "body": [
+      "<s-table-page :data=\"$1\" style=\"width: 100%;\" max-height=\"${2:500}\">",
+      "\t<s-table-column type=\"selection\" width=\"35\"></s-table-column>",
+      "\t<s-table-column v-for=\"(${3:value}, ${4:key}, ${5:index})} in ${6:list}\" :label=\"${3:value}\" :prop=\"${4:key}\" :key=\"${5:index}\"",
+      "\t\t<template slot-scope=\"scope\">",
+      "\t\t\t<span>{{${7:scope.row[key]}}}</span>",
+      "\t\t</template>",
+      "\t</s-table-column>",
+      "</s-table-page>",
+      "${8}"
+    ],
+    "description": "vue-sunflower <s-table-page>"
+  },
+  "Table: Table Column": {
+    "prefix": "stabelcolumn",
+    "body": ["<s-table-column :prop=\"${1}\" :label=\"${2}\" width=\"${3:120}\" show-overflow-tooltip></s-table-column>", "${4}"],
+    "description": "vue-sunflower <s-table-column>"
+  },
+
+  "Table: Table Column Template": {
+    "prefix": "stabelcolumntemplate",
+    "body": [
+      "<s-table-column :prop=\"${1}\" :label=\"${2}\" width=\"${3:120}\" show-overflow-tooltip>",
+      "\t<template slot-scope=\"scope\">",
+      "\t${4}",
+      "\t</template>",
+      "</s-table-column>",
+      "${5}"
+    ],
+    "description": "vue-sunflower <s-table-column> with template"
+  },
+  "Table: Pagination": {
+    "prefix": "spagination",
+    "body": [
+      "<s-pagination",
+      "\t@size-change=\"${1:sizeChange}\"",
+      "\t@current-change=\"${2:currentChange}\"",
+      "\t:current-page=\"${3:currentPage}\"",
+      "\tlayout=\"total, sizes, prev, pager, next, jumper\"",
+      "\t:total=\"${6:totalNum}\">",
+      "</s-pagination>",
+      "${7}"
+    ],
+    "description": "vue-sunflower <s-pagination>"
+  },
+  "Others: Scrollbar": {
+    "prefix": "sscrollbar",
+    "body": ["<s-scrollbar wrap-style=\"max-height:${1:250px};\">", "\t${2}", "</s-scrollbar>", "${3}"],
+    "description": "vue-sunflower <s-scrollbar>"
+  },
+  "Others: SearchGroup": {
+    "prefix": "ssearchgroup",
+    "body": [
+      "<s-search-group :searchHandler=\"$1\">",
+      "\t<s-form :inline=\"true\">",
+      "\t\t<s-form-item label=\"$2\">",
+      "\t\t\t<s-input v-model=\"\"></s-input>",
+      "\t\t</s-form-item>",
+      "\t</s-form>",
+      "</s-search-group>",
+      "${3}"
+    ],
+    "description": "vue-sunflower <s-search-group>"
+  },
+  "Others: Box": {
+    "prefix": "sbox",
+    "body": ["<s-box :data=\"data\"></s-box>", "<!--data:[{icon:'',title:'标题',des:'描述'}]-->", "${5}"],
+    "description": "vue-sunflower <s-box>"
+  },
+  "Others: Spin": {
+    "prefix": "sspin",
+    "body": ["<s-spin type=\"${1|pulse,clip,beat,scale,moon|}\" color=\"${2:blue}\" size=\"${3:20px}\" :fix=\"${4:false}\"></s-spin>", "${5}"],
+    "description": "vue-sunflower <s-spin>"
+  },
+  "Others: TimeLine": {
+    "prefix": "stimeline",
+    "body": [
+      "<s-timeline>",
+      "\t<s-timeline-item>",
+      "\t\t<p class=\"time\">$1</p>",
+      "\t\t<p class=\"content\">$2</p>",
+      "\t</s-timeline-item>",
+      "</s-timeline>",
+      "${3}"
+    ],
+    "description": "vue-sunflower <s-timeline>"
+  },
+  "Others: RoleCollapse": {
+    "prefix": "srolecollapse",
+    "body": ["<s-role-collapse title=\"${1}\">", "\t<s-role-collapse-item :role-list=\"${2}\"></s-role-collapse-item>", "</s-role-collapse>", "${3}"],
+    "description": "vue-sunflower <s-role-collapse>"
+  },
+  "Others: Drawer": {
+    "prefix": "sdrawer",
+    "body": ["<s-drawer width=\"${1:450}\" title=\"${2}\" :mask-closable=\"false\" v-model=\"{3:false}\">", "</s-drawer>", "${4}"],
+    "description": "vue-sunflower <s-drawer>"
   }
 }
