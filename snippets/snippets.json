@@ -154,10 +154,10 @@
   "Layout: NavMenu Menu": {
     "prefix": "smenu",
     "body": [
-      "<s-menu mode=\"${1|vertical,horizontal|}\" :active-name=\"$2\" @on-select=\"$3\">",
-      "\t<el-menu-item :name=\"${4:item}\" v-for=\"(${4:item}, ${5:index}) in ${6:items}\">",
+      "<s-menu :active-name=\"$1\" :active-key=\"$1\" @on-select=\"$2\">",
+      "\t<s-menu-item :name=\"${3:item}\">",
       "\t\t{{${4:item}}}",
-      "\t</el-menu-item>",
+      "\t</s-menu-item>",
       "</s-menu>",
       "${7}"
     ],
@@ -532,11 +532,7 @@
     "body": [
       "<s-table :data=\"$1\" style=\"width: 100%;\" max-height=\"${2:500}\">",
       "\t<s-table-column type=\"selection\" width=\"35\"></s-table-column>",
-      "\t<s-table-column v-for=\"(${3:value}, ${4:key}, ${5:index}) in ${6:list}\" :label=\"${3:value}\" :prop=\"${4:key}\" :key=\"${5:index}\"",
-      "\t\t<template slot-scope=\"scope\">",
-      "\t\t\t<span>{{${6:scope.row[key]}}}</span>",
-      "\t\t</template>",
-      "\t</s-table-column>",
+      "\t<s-table-column prop=\"${3}\" label=\"${4}\" show-overflow-tooltip></s-table-column>",
       "</s-table>",
       "${7}"
     ],
@@ -545,8 +541,8 @@
   "Table: TablePage": {
     "prefix": "stablepage",
     "body": [
-      "<s-table-page :data=\"$1\" style=\"width: 100%;\" max-height=\"${2:500}\">",
-      "\t<s-table-column type=\"selection\" width=\"35\"></s-table-column>",
+      "<s-table-page :data=\"$1\" @selection-change=\"${2:selection}\" style=\"width: 100%;\">",
+      "\t<s-table-column type=\"selection\" width=\"55\"></s-table-column>",
       "\t<s-table-column prop=\"${3}\" label=\"${4}\" width=\"${5:120}\" show-overflow-tooltip></s-table-column>",
       "</s-table-page>",
       "${8}"
@@ -555,16 +551,16 @@
   },
   "Table: Table Column": {
     "prefix": "stabelcolumn",
-    "body": ["<s-table-column prop=\"${1}\" label=\"${2}\" width=\"${3:120}\" show-overflow-tooltip></s-table-column>", "${4}"],
+    "body": ["<s-table-column prop=\"${1}\" label=\"${2}\" show-overflow-tooltip></s-table-column>", "${4}"],
     "description": "vue-sunflower <s-table-column>"
   },
 
   "Table: Table Column Template": {
     "prefix": "stabelcolumntemplate",
     "body": [
-      "<s-table-column prop=\"${1}\" label=\"${2}\" width=\"${3:120}\" show-overflow-tooltip>",
+      "<s-table-column prop=\"${1}\" label=\"${2}\" show-overflow-tooltip>",
       "\t<template slot-scope=\"scope\">",
-      "\t${4}",
+      "\t${3}",
       "\t</template>",
       "</s-table-column>",
       "${5}"
