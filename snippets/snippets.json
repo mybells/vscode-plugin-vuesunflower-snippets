@@ -27,7 +27,7 @@
   },
   "Basic: Button": {
     "prefix": "sbutton",
-    "body": ["<s-button type=\"${1|default,cancel|}\" @click=\"$2\"></s-button>", "${3}"],
+    "body": ["<s-button @click=\"$2\"></s-button>", "${3}"],
     "description": "vue-sunflower <s-button>"
   },
   "Form: Input": {
@@ -391,10 +391,10 @@
   "Notice: Dialog": {
     "prefix": "sdialog",
     "body": [
-      "<s-dialog title=\"$1\" width=\"${2:700px}\" :before-close=\"$3\">",
+      "<s-dialog v-model=\"\" title=\"$1\" width=\"${2:700px}\" :before-close=\"$3\">",
       "\t$4",
       "\t<template slot=\"footer\" class=\"dialog-footer\">",
-      "\t\t<s-button type=\"primary\" @click=\"$5\">确 定</s-button>",
+      "\t\t<s-button @click=\"$5\">确 定</s-button>",
       "\t\t<s-button type=\"cancel\" @click=\"$6\">取 消</s-button>",
       "\t</template>",
       "</s-dialog>",
@@ -583,7 +583,7 @@
   },
   "Others: Scrollbar": {
     "prefix": "sscrollbar",
-    "body": ["<s-scrollbar wrap-style=\"max-height:${1:250px};\">", "\t${2}", "</s-scrollbar>", "${3}"],
+    "body": ["<s-scrollbar wrap-style=\"max-height:${1:250px};padding-right:10px;\">", "\t${2}", "</s-scrollbar>", "${3}"],
     "description": "vue-sunflower <s-scrollbar>"
   },
   "Others: SearchGroup": {
