@@ -82,7 +82,7 @@
   },
   "Form: Switch": {
     "prefix": "sswitch",
-    "body": ["<s-switch v-model=\"$1\" active-value=\"$2\" inactive-value=\"$3\"></s-switch>", "${4}"],
+    "body": ["<s-switch v-model=\"$1\" @change=\"$2\" size=\"small\" active-value=\"$3\" inactive-value=\"$4\"></s-switch>", "${4}"],
     "description": "vue-sunflower <s-switch>"
   },
   "Form: TimePicker": {
@@ -154,10 +154,10 @@
   "Layout: NavMenu Menu": {
     "prefix": "smenu",
     "body": [
-      "<s-menu mode=\"${1|vertical,horizontal|}\" :active-name=\"$2\" @on-select=\"$3\">",
-      "\t<el-menu-item :name=\"${4:item}\" v-for=\"(${4:item}, ${5:index}) in ${6:items}\">",
+      "<s-menu :active-name=\"$1\" :active-key=\"$1\" @on-select=\"$2\">",
+      "\t<s-menu-item :name=\"${3:item}\">",
       "\t\t{{${4:item}}}",
-      "\t</el-menu-item>",
+      "\t</s-menu-item>",
       "</s-menu>",
       "${7}"
     ],
@@ -391,10 +391,10 @@
   "Notice: Dialog": {
     "prefix": "sdialog",
     "body": [
-      "<s-dialog title=\"$1\" width=\"${2:700px}\" :before-close=\"$3\">",
+      "<s-dialog v-model=\"\" title=\"$1\" width=\"${2:700px}\" :before-close=\"$3\">",
       "\t$4",
       "\t<template slot=\"footer\" class=\"dialog-footer\">",
-      "\t\t<s-button type=\"primary\" @click=\"$5\">确 定</s-button>",
+      "\t\t<s-button @click=\"$5\">确 定</s-button>",
       "\t\t<s-button type=\"cancel\" @click=\"$6\">取 消</s-button>",
       "\t</template>",
       "</s-dialog>",
@@ -404,7 +404,7 @@
   },
   "Notice: Message": {
     "prefix": "s$message",
-    "body": ["this.\\$message({", "\tmessage: '$1',", "\ttype: '${2|info,success,warning,error|}',", "});", "${4}"],
+    "body": ["this.\\$message({", "\tmessage: '$1',", "\ttype: '${2|warning,info,success,warning,error|}',", "});", "${4}"],
     "description": "vue-sunflower $message"
   },
   "Notice: Messagebox": {
@@ -429,7 +429,7 @@
   "Notice: Messagebox Alert": {
     "prefix": "s$alert",
     "body": [
-      "this.$alert('${1:内容}', '${2:标题}', {",
+      "this.\\$alert('${1:内容}', '${2:标题}', {",
       "\tconfirmButtonText: '${3:确定}',",
       "\tcallback: action => {",
       "\t\t${4}",
@@ -443,7 +443,7 @@
   "Notice: Messagebox Confirm": {
     "prefix": "s$confirm",
     "body": [
-      "this.$confirm('${1:内容}', '${2:提示}', {",
+      "this.\\$confirm('${1:内容}', '${2:提示}', {",
       "\tconfirmButtonText: '${3:确定}',",
       "\tcancelButtonText: '${4:取消}',",
       "\ttype: '${5|info,warning,error,success|}',",
@@ -460,7 +460,7 @@
   "Notice: Messagebox Prompt": {
     "prefix": "s$prompt",
     "body": [
-      "this.$prompt('${1:内容}', '${2:标题}', {",
+      "this.\\$prompt('${1:内容}', '${2:标题}', {",
       "\tconfirmButtonText: '${3:确定}',",
       "\tcancelButtonText: '${4:取消}',",
       "\tinputPattern: '${5}',",
@@ -478,7 +478,7 @@
   "Notice: Notification": {
     "prefix": "s$notify",
     "body": [
-      "this.$notify({",
+      "this.\\$notify({",
       "\ttitle: '${1}',",
       "\tmessage: '${2}',",
       "\ttype: '${3|info,success,warning,error|}',",
@@ -532,11 +532,7 @@
     "body": [
       "<s-table :data=\"$1\" style=\"width: 100%;\" max-height=\"${2:500}\">",
       "\t<s-table-column type=\"selection\" width=\"35\"></s-table-column>",
-      "\t<s-table-column v-for=\"(${3:value}, ${4:key}, ${5:index}) in ${6:list}\" :label=\"${3:value}\" :prop=\"${4:key}\" :key=\"${5:index}\">",
-      "\t\t<template slot-scope=\"scope\">",
-      "\t\t\t<span>{{${6:scope.row[key]}}}</span>",
-      "\t\t</template>",
-      "\t</s-table-column>",
+      "\t<s-table-column prop=\"${3}\" label=\"${4}\" show-overflow-tooltip></s-table-column>",
       "</s-table>",
       "${7}"
     ],
@@ -545,13 +541,9 @@
   "Table: TablePage": {
     "prefix": "stablepage",
     "body": [
-      "<s-table-page :data=\"$1\" style=\"width: 100%;\" max-height=\"${2:500}\">",
-      "\t<s-table-column type=\"selection\" width=\"35\"></s-table-column>",
-      "\t<s-table-column v-for=\"(${3:value}, ${4:key}, ${5:index})} in ${6:list}\" :label=\"${3:value}\" :prop=\"${4:key}\" :key=\"${5:index}\">",
-      "\t\t<template slot-scope=\"scope\">",
-      "\t\t\t<span>{{${7:scope.row[key]}}}</span>",
-      "\t\t</template>",
-      "\t</s-table-column>",
+      "<s-table-page :data=\"$1\" @selection-change=\"${2:selection}\" style=\"width: 100%;\">",
+      "\t<s-table-column type=\"selection\" width=\"55\"></s-table-column>",
+      "\t<s-table-column prop=\"${3}\" label=\"${4}\" width=\"${5:120}\" show-overflow-tooltip></s-table-column>",
       "</s-table-page>",
       "${8}"
     ],
@@ -559,16 +551,16 @@
   },
   "Table: Table Column": {
     "prefix": "stabelcolumn",
-    "body": ["<s-table-column :prop=\"${1}\" :label=\"${2}\" width=\"${3:120}\" show-overflow-tooltip></s-table-column>", "${4}"],
+    "body": ["<s-table-column prop=\"${1}\" label=\"${2}\" show-overflow-tooltip></s-table-column>", "${4}"],
     "description": "vue-sunflower <s-table-column>"
   },
 
   "Table: Table Column Template": {
     "prefix": "stabelcolumntemplate",
     "body": [
-      "<s-table-column :prop=\"${1}\" :label=\"${2}\" width=\"${3:120}\" show-overflow-tooltip>",
+      "<s-table-column prop=\"${1}\" label=\"${2}\" show-overflow-tooltip>",
       "\t<template slot-scope=\"scope\">",
-      "\t${4}",
+      "\t${3}",
       "\t</template>",
       "</s-table-column>",
       "${5}"
@@ -591,7 +583,7 @@
   },
   "Others: Scrollbar": {
     "prefix": "sscrollbar",
-    "body": ["<s-scrollbar wrap-style=\"max-height:${1:250px};\">", "\t${2}", "</s-scrollbar>", "${3}"],
+    "body": ["<s-scrollbar wrap-style=\"max-height:${1:250px};padding-right:10px;\">", "\t${2}", "</s-scrollbar>", "${3}"],
     "description": "vue-sunflower <s-scrollbar>"
   },
   "Others: SearchGroup": {
