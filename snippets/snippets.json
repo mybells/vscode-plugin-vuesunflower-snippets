@@ -404,7 +404,7 @@
   },
   "Notice: Message": {
     "prefix": "s$message",
-    "body": ["this.\\$message({", "\tmessage: '$1',", "\ttype: '${2|warning,info,success,warning,error|}',", "});", "${4}"],
+    "body": ["this.\\$message({ message: '$1', type: '${2|warning,info,success,error|}'});"],
     "description": "vue-sunflower $message"
   },
   "Notice: Messagebox": {
@@ -531,7 +531,7 @@
     "prefix": "stable",
     "body": [
       "<s-table :data=\"$1\" style=\"width: 100%;\" max-height=\"${2:500}\">",
-      "\t<s-table-column type=\"selection\" width=\"35\"></s-table-column>",
+      "\t<s-table-column type=\"selection\" width=\"55\"></s-table-column>",
       "\t<s-table-column prop=\"${3}\" label=\"${4}\" show-overflow-tooltip></s-table-column>",
       "</s-table>",
       "${7}"
@@ -543,7 +543,7 @@
     "body": [
       "<s-table-page :data=\"$1\" @selection-change=\"${2:selection}\" style=\"width: 100%;\">",
       "\t<s-table-column type=\"selection\" width=\"55\"></s-table-column>",
-      "\t<s-table-column prop=\"${3}\" label=\"${4}\" width=\"${5:120}\" show-overflow-tooltip></s-table-column>",
+      "\t<s-table-column prop=\"${3}\" label=\"${4}\" show-overflow-tooltip></s-table-column>",
       "</s-table-page>",
       "${8}"
     ],
@@ -632,5 +632,10 @@
     "prefix": "sdrawer",
     "body": ["<s-drawer width=\"${1:450}\" title=\"${2}\" :mask-closable=\"false\" v-model=\"{3:false}\">", "</s-drawer>", "${4}"],
     "description": "vue-sunflower <s-drawer>"
+  },
+  "Others: Console": {
+    "prefix": "sconsole",
+    "body": ["console.log(${1})"],
+    "description": "console.log()"
   }
 }

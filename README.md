@@ -97,3 +97,4 @@
 |5. | `stimeline` | `<s-timeline>` |
 |6. | `srolecollapse` | `<s-role-collapse>` |
 |7. | `sdrawer` | `<s-drawer>` |
+|7. | `sconsole` | `console.log()` |

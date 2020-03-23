@@ -33,3 +33,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - update s$confirm
 - update s$notify
 - update s$prompt
+
+## [version 0.0.6] - 2020-03-23
+
+### Changed
+- update s-table
+- update s-table-page
+- update s$message
+- add sconsole
